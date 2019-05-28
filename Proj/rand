@@ -1,0 +1,43 @@
+/* 
+ * File:   main.cpp
+ * Author: Robles, Joaquin
+ * Created on May 26th, 2019, 11:30 AM
+ * Purpose:  Poker Game
+ */
+ 
+#include <iostream>
+#include <ctime>
+
+using namespace std;
+
+void shuffle(int [], int);
+
+int main() {
+    const int SIZE = 52;
+    int Deck[SIZE];
+    shuffle(Deck,SIZE);
+	return 0;
+}
+void shuffle(int Deck[],const int SIZE){
+    srand(time(NULL));
+    int y = 0;    
+    for(int x = 0;x < SIZE; x++){
+        Deck[x] = x + 1;
+    }
+    for(int x = SIZE;y < x; x--){
+        int z = rand() % x;
+        int temp = Deck[x - 1];
+        Deck[x - 1] = Deck[z];
+        Deck[z] = temp;
+    }
+    for(int x = 0;x < SIZE; x++){
+        cout << Deck[x] << endl;
+    }    
+}
+
+/* 
+ * Things to add 
+ * void to check which hand wins 
+ * add some other players
+ * add distribution of cards and comuunity cards
+ */
