@@ -41,3 +41,50 @@ void shuffle(int Deck[],const int SIZE){
  * add some other players
  * add distribution of cards and comuunity cards
  */
+
+#include <iostream>
+
+using namespace std;
+
+void bublSrt(int [],int);
+
+int main() {
+    const int SIZE = 7;
+	int array[] = {13, 5 , 6 , 1 , 10 , 6, 8 };
+	for(int x = 0; x < SIZE; x++){
+	    cout << array[x] << "   ";
+	}
+	cout << endl;
+	bublSrt(array, SIZE);
+	for(int x = 0; x < SIZE; x++){
+	    cout << array[x] << "   ";
+	}	
+	cout << endl;
+	for(int x = 1; x < 52;x++){
+	    cout << x % 13 << "   "  << x / 13 << endl;
+	}
+	cout << "       __________________Dealer__________________       " << endl;
+	cout << "      |                                          |      " << endl;
+	cout << "      |                [][][][][]                |      " << endl;
+	cout << "      |                                          |      " << endl;
+	cout << "      |                                          |      " << endl;
+	cout << "Seat 5| [][]                                [][] |Seat 1" << endl;
+	cout << "      |                                          |      " << endl;
+	cout << "      |                                          |      " << endl;
+	cout << "      |    [][]           [][]           [][]    |      " << endl;
+	cout << "      |__________________________________________|      " << endl;
+	cout << "      |___Seat 4_________Seat 3_________Seat 2___|      " << endl;
+	return 0;
+}
+void bublSrt(int array[],int SIZE){
+    int max, indx, y;
+    for(max = SIZE - 1; max > 0; max--){
+        for(indx = 0; indx < max; indx++){
+            if(array[indx] > array[indx + 1]){
+                y = array[indx];
+                array[indx] = array[indx + 1];
+                array[indx + 1] = y;
+            }
+        }
+    }
+}
