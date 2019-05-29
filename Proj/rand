@@ -88,3 +88,106 @@ void bublSrt(int array[],int SIZE){
         }
     }
 }
+
+
+
+
+
+
+/* 
+ * File:   main.cpp
+ * Author: Robles, Joaquin
+ * Created on May 26th, 2019, 11:30 AM
+ * Purpose:  Poker Game
+ */
+ 
+#include <iostream>
+#include <ctime>
+
+using namespace std;
+
+void shuffle(int [], int);
+void prntTbl(int&,int&,int&);
+void prompt(int&,int&,int&);
+void NewG(int&,int&,int&);
+void Load(int&,int&,int&);
+void Deal(int [], int);
+
+int main() {
+    const int SIZE = 52, CARDS = 7;
+    int Deck[SIZE], Chips, Seat, Stage;
+    int Seat1[CARDS],Seat2[CARDS],Seat3[CARDS],Seat4[CARDS],Seat5[CARDS],Comm[CARDS];
+    prompt(Chips,Seat,Stage);
+    Deal(Deck,SIZE);
+	return 0;
+}
+void prompt(int& Chips,int& Seat,int& Stage){
+    char choice,Prob = 2;
+    do{
+        cout << "1. New Game" << endl;
+        cout << "2. Load Game" << endl;
+        cout << "3. Exit Game" << endl;
+        cout << endl;
+        cin >> choice;
+        cout << endl;
+        switch(choice){
+            case '1':NewG(Chips,Seat,Stage);break;
+            case '2':Load(Chips,Seat,Stage);break;
+        }
+    }while(choice<=Prob);
+}    
+void shuffle(int Deck[],int SIZE){
+    srand(time(NULL));
+    int y = 0;    
+    for(int x = 0;x < SIZE; x++){
+        Deck[x] = x + 1;
+    }
+    for(int x = SIZE;y < x; x--){
+        int z = rand() % x;
+        int temp = Deck[x - 1];
+        Deck[x - 1] = Deck[z];
+        Deck[z] = temp;
+    }
+}
+void prntTbl(int& Chips,int& Seat,int& Stage){
+	cout << "       __________________Dealer__________________       " << endl;
+	cout << "      |                                          |      " << endl;
+	cout << "      |                [][][][][]                |      " << endl;
+	cout << "      |                                          |      " << endl;
+	cout << "      |                                          |      " << endl;
+	cout << "Seat 5| [][]                                [][] |Seat 1" << endl;
+	cout << "      |                                          |      " << endl;
+	cout << "      |                                          |      " << endl;
+	cout << "      |    [][]           [][]           [][]    |      " << endl;
+	cout << "      |__________________________________________|      " << endl;
+	cout << "      |___Seat 4_________Seat 3_________Seat 2___|      " << endl;
+	cout << endl;
+	if(Stage > 2){
+	    cout << "Community cards: " << endl;
+	    cout << "Your hand: " << endl;
+	    cout << "Chips: " << Chips << endl;
+	}    
+}
+void NewG(int& Chips,int& Seat,int& Stage){
+    Chips = 100;
+    Stage = 1;
+    cout << "Please pick a seat to begin the game (1-5):" << endl;
+    prntTbl(Chips,Seat,Stage);
+    cin >> Seat;
+    while(Seat > 5){
+        cout << "Please pick a Seat from 1 to 5" << endl;
+        cin >> Seat;
+    }
+    cout << endl;
+}
+void Load(int& Chips,int& Seat,int& Stage){
+    
+}
+void Deal(int Deck[],int SIZE){
+    shuffle(Deck,SIZE);
+    cout << Deck[0] << endl;
+    cout << Deck[1] << endl;
+    cout << Deck[2] << endl;
+    cout << Deck[3] << endl;
+    cout << Deck[4] << endl;
+}
